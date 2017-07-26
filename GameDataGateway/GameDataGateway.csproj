@@ -46,11 +46,7 @@
     <Compile Include="Repository\GameObjectRepositoryImp.cs" />
     <Compile Include="Reader\XmlFolderLoader.cs" />
     <Compile Include="Model\GalacticConquest.cs" />
-    <Compile Include="Reader\PlanetFileReader.cs" />
-    <Compile Include="Reader\PlanetFileReaderTest.cs" />
     <Compile Include="Reader\Builder\PlanetBuilder.cs" />
-    <Compile Include="Reader\TradeRouteFileReader.cs" />
-    <Compile Include="Reader\TradeRouteFileReaderTest.cs" />
     <Compile Include="Reader\Builder\TradeRouteBuilder.cs" />
     <Compile Include="Reader\GenericGameObjectFileReader.cs" />
     <Compile Include="Reader\Builder\GameObjectBuilder.cs" />

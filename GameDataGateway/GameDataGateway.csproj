@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5FD0233F-1DD3-4C83-8EE2-2977AD741C6B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>GameDataGateway</RootNamespace>
+    <AssemblyName>GameDataGateway</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.7.1\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repository\GameObjectRepository.cs" />
+    <Compile Include="Model\Planet.cs" />
+    <Compile Include="Model\GameObject.cs" />
+    <Compile Include="Model\TradeRoute.cs" />
+    <Compile Include="Model\Implementation\PlanetImp.cs" />
+    <Compile Include="Model\Implementation\TradeRouteImp.cs" />
+    <Compile Include="Repository\RepositoryChangedArgs.cs" />
+    <Compile Include="Reader\GameFileReader.cs" />
+    <Compile Include="Repository\GameObjectRepositoryImp.cs" />
+    <Compile Include="Reader\XmlFolderLoader.cs" />
+    <Compile Include="Model\GalacticConquest.cs" />
+    <Compile Include="Reader\PlanetFileReader.cs" />
+    <Compile Include="Reader\PlanetFileReaderTest.cs" />
+    <Compile Include="Reader\Builder\PlanetBuilder.cs" />
+    <Compile Include="Reader\TradeRouteFileReader.cs" />
+    <Compile Include="Reader\TradeRouteFileReaderTest.cs" />
+    <Compile Include="Reader\Builder\TradeRouteBuilder.cs" />
+    <Compile Include="Reader\GenericGameObjectFileReader.cs" />
+    <Compile Include="Reader\Builder\GameObjectBuilder.cs" />
+    <Compile Include="Reader\Builder\GameObjectBuilderFactory.cs" />
+    <Compile Include="Reader\GenericGameObjectFileReaderTest.cs" />
+    <Compile Include="Reader\XmlStringFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Repository\" />
+    <Folder Include="Model\" />
+    <Folder Include="Model\Implementation\" />
+    <Folder Include="Reader\" />
+    <Folder Include="Reader\Builder\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

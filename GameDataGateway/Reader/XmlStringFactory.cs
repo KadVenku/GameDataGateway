@@ -1,5 +1,4 @@
-﻿using System;
-namespace GameDataGateway.Reader {
+﻿namespace GameDataGateway.Reader {
     internal static class XmlStringFactory {
         public static string CreateXmlString(string type) {
             switch (type) {
@@ -35,6 +34,12 @@ namespace GameDataGateway.Reader {
                         <In_Background>yes</In_Background>
                         <Max_Ground_Base>0</Max_Ground_Base>
                         <Max_Space_Base>0</Max_Space_Base>
+
+                        <Abilities>
+                            <Test>
+                                <A>asd</A>
+                            </Test>
+                        </Abilities>
                         </Planet>
                     </Planets>";
         }

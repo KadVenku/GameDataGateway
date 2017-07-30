@@ -1,10 +1,11 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using GameDataGateway.Model;
 using GameDataGateway.Reader.Builder;
 using GameDataGateway.Repository;
 using NUnit.Framework;
+
 namespace GameDataGateway.Reader {
     [TestFixture]
     internal class GenericGameObjectFileReaderTest {
@@ -44,8 +45,8 @@ namespace GameDataGateway.Reader {
 
             var repo = new GameObjectRepositoryStub();
 
-            var pointA = new Model.Implementation.PlanetImp { Name = "Abregado_Rae" };
-            var pointB = new Model.Implementation.PlanetImp { Name = "Bothawui" };
+            var pointA = new Model.Implementation.PlanetImp {Name = "Abregado_Rae"};
+            var pointB = new Model.Implementation.PlanetImp {Name = "Bothawui"};
 
             repo.AddPlanet(pointB);
             repo.AddPlanet(pointA);

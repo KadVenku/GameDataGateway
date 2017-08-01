@@ -5,9 +5,7 @@ using GameDataGateway.Model.Implementation;
 
 namespace GameDataGateway.Reader.Builder {
     public class PlanetBuilder : GameObjectBuilder {
-        private Planet planet;
-
-        private readonly List<string> usedElements = new List<string> {"Name", "Galactic_Position"};
+        protected Planet planet;
 
         public void AddAttribute(string attribute, string value) {
             if (planet == null) planet = CreatePlanet();
@@ -20,10 +18,6 @@ namespace GameDataGateway.Reader.Builder {
                 planet.Y = double.Parse(positionArray[1], CultureInfo.InvariantCulture);
                 planet.Z = double.Parse(positionArray[2], CultureInfo.InvariantCulture);
             }
-        }
-
-        public bool usesElement(string element) {
-            return usedElements.Contains(element);
         }
 
         protected virtual Planet CreatePlanet() {

@@ -54,6 +54,12 @@
     <Compile Include="Reader\Builder\GameObjectBuilderFactory.cs" />
     <Compile Include="Reader\GenericGameObjectFileReaderTest.cs" />
     <Compile Include="Reader\XmlStringFactory.cs" />
+    <Compile Include="Writer\PlanetWriter.cs" />
+    <Compile Include="Reader\Builder\IncompletePlanetBuilder.cs" />
+    <Compile Include="Reader\Builder\IncompleteGameObjectBuilder.cs" />
+    <Compile Include="Reader\Builder\IncompleteTradeRouteBuilder.cs" />
+    <Compile Include="Writer\PlanetWriterTest.cs" />
+    <Compile Include="Writer\PlanetWriterMock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\" />
@@ -61,6 +67,7 @@
     <Folder Include="Model\Implementation\" />
     <Folder Include="Reader\" />
     <Folder Include="Reader\Builder\" />
+    <Folder Include="Writer\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

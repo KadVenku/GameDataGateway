@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Xml;
 using GameDataGateway.Model;
 using GameDataGateway.Reader.Builder;
@@ -51,8 +50,12 @@ namespace GameDataGateway.Reader {
                 builder = factory.CreateBuilder(objectType);
                 if (reader.HasAttributes && reader.GetAttribute("Name") != null)
                     builder.AddAttribute("Name", reader.GetAttribute("Name"));
-            } else if (reader.Name == "Test") {
-                Console.WriteLine(reader.ReadInnerXml());
+            } else if (builder is IncompleteGameObjectBuilder) {
+                var incompleteBuilder = builder as IncompleteGameObjectBuilder;
+                if (!incompleteBuilder.usesElement(reader.Name)) {
+                    string xmlString = reader.ReadOuterXml();
+                    incompleteBuilder.AddXmlString(xmlString);
+                }
             }
         }
 
@@ -68,7 +71,7 @@ namespace GameDataGateway.Reader {
 
         private void HandleEndElement(XmlReader reader) {
             if (reader.Name != objectType) return;
-            gameObjects.Add((T) builder.GetGameObject());
+            gameObjects.Add((T)builder.GetGameObject());
             currentNode = string.Empty;
         }
     }

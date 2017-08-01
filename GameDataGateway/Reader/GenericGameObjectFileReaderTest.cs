@@ -40,6 +40,33 @@ namespace GameDataGateway.Reader {
         }
 
         [Test]
+        public void whenReadingXmlWithPlanet_shouldCreateIncompletePlanetWithXmlString() {
+            string expected = @"<Tag1>Something</Tag1>
+                                <Tag2>
+                                    <SubTag>
+                                        <SubSubTag>42</SubSubTag>
+                                    </SubTag>
+                                </Tag2>".Replace(" ", "").Replace("\n", "").Replace("\r", "");
+            
+            PrepareData("SimplePlanet");
+
+            var repo = new GameObjectRepositoryStub();
+            var builderFactory = new GameObjectBuilderFactory(repo);
+            var sut = new GenericGameObjectFileReader<Planet>("Planet", builderFactory);
+
+            var result = sut.ReadGameFile(filePath) as List<Planet>;
+
+            Assert.That(result.Count, Is.EqualTo(1));
+
+            var planet = result[0] as IncompleteGameObject;
+
+            string xmlString = planet.GetString().Replace(" " , "").Replace("\n", "").Replace("\r", "");
+
+            Assert.That(xmlString, Is.EqualTo(expected));
+
+        }
+
+        [Test]
         public void whenReadingXmlWithValidTradeRoute_shouldReturnListWithTradeRoute() {
             PrepareData("TradeRoute");
 

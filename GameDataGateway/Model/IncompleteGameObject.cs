@@ -3,8 +3,6 @@
         protected string xmlString = string.Empty;
 
         public void SaveString(string content) {
-            if (xmlString != string.Empty)
-                content += "\n" + content;
             xmlString += content;
         }
 

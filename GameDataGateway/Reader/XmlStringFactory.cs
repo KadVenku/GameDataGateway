@@ -4,6 +4,8 @@
             switch (type) {
                 case "Planet":
                     return CreatePlanetString();
+                case "SimplePlanet":
+                    return CreateSimplePlanetString();
                 case "TradeRoute":
                     return CreateTradeRouteString();
                 default:
@@ -42,6 +44,18 @@
                         </Abilities>
                         </Planet>
                     </Planets>";
+        }
+
+        public static string CreateSimplePlanetString() {
+            return @"<Planets><Planet Name=""Test_Planet"">
+                    <Galactic_Position>1, 2, 3</Galactic_Position>
+                    <Tag1>Something</Tag1>
+                    <Tag2>
+                    <SubTag>
+                        <SubSubTag>42</SubSubTag>
+                    </SubTag>
+                    </Tag2>
+                    </Planet></Planets>";
         }
 
         private static string CreateTradeRouteString() {

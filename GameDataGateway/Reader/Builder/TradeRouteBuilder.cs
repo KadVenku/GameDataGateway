@@ -6,9 +6,7 @@ using GameDataGateway.Model.Implementation;
 namespace GameDataGateway.Reader.Builder {
     public class TradeRouteBuilder : GameObjectBuilder {
         private readonly IEnumerable<Planet> planets;
-        private TradeRoute tradeRoute;
-
-        private readonly List<string> usedElements = new List<string> {"Name", "Point_A", "Point_B"};
+        protected TradeRoute tradeRoute;
 
         public TradeRouteBuilder(IEnumerable<Planet> planets) {
             this.planets = planets;
@@ -28,10 +26,6 @@ namespace GameDataGateway.Reader.Builder {
                     tradeRoute.PointB = planets.First(p => p.Name == content);
                     break;
             }
-        }
-
-        public bool usesElement(string element) {
-            return usedElements.Contains(element);
         }
 
         protected virtual TradeRoute CreateTradeRoute() {

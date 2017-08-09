@@ -15,7 +15,7 @@ namespace GameDataGateway.Reader.Builder {
             incompleteTradeRoute.SaveString(xmlString);
         }
 
-        public bool usesElement(string element) {
+        public bool UsesElement(string element) {
             return usedElements.Contains(element);
         }
     }

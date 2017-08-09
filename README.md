@@ -8,7 +8,7 @@ An XML Reader/Writer for Star Wars Empire at War and Forces of Corruption Game F
 - Keep your methods short and readable. Long methods with a lot of nested statements can usually be split into multiple smaller methods.
 - Your method names should state what the method does.
 - Don't start your interface names with "I", rather add an "Imp" suffix or a more descriptive name to the implementation.
-- Comments should be avoided at all costs. If your code cannot be understood without comments rewrite it.
+- Comments should be avoided at all cost. If your code cannot be understood without comments rewrite it.
 
 ## Contributing
 

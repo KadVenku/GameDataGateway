@@ -5,17 +5,18 @@ using GameDataGateway.Reader.Builder;
 
 namespace GameDataGateway.Reader {
     public class GenericGameObjectFileReader<T> where T : GameObject {
-
         private readonly List<T> gameObjects = new List<T>();
         private readonly string objectType;
         private string currentNode;
 
+        private bool isFirst = true;
+
         private readonly GameObjectBuilderFactory factory;
         private GameObjectBuilder builder;
 
-        public GenericGameObjectFileReader(string objectName, GameObjectBuilderFactory factory) {
+        public GenericGameObjectFileReader(string objectType, GameObjectBuilderFactory factory) {
             this.factory = factory;
-            this.objectType = objectName;
+            this.objectType = objectType;
         }
 
         public IEnumerable<T> ReadGameFile(string filePath) {
@@ -44,11 +45,24 @@ namespace GameDataGateway.Reader {
         }
 
         private void HandleElement(XmlReader reader) {
+            if (IsRoot()) return;
             if (reader.Name == objectType) {
                 builder = factory.CreateBuilder(objectType);
-                if (reader.HasAttributes)
+                if (reader.HasAttributes && reader.GetAttribute("Name") != null)
                     builder.AddAttribute("Name", reader.GetAttribute("Name"));
+            } else if (builder is IncompleteGameObjectBuilder) {
+                var incompleteBuilder = builder as IncompleteGameObjectBuilder;
+                if (!incompleteBuilder.usesElement(reader.Name)) {
+                    string xmlString = reader.ReadOuterXml();
+                    incompleteBuilder.AddXmlString(xmlString);
+                }
             }
+        }
+
+        private bool IsRoot() {
+            if (!isFirst) return false;
+            isFirst = false;
+            return true;
         }
 
         private void HandleText(string nodeName, string content) {
@@ -56,10 +70,9 @@ namespace GameDataGateway.Reader {
         }
 
         private void HandleEndElement(XmlReader reader) {
-            if (reader.Name == objectType) {
-                gameObjects.Add((T)builder.GetGameObject());
-                currentNode = string.Empty;
-            }
+            if (reader.Name != objectType) return;
+            gameObjects.Add((T)builder.GetGameObject());
+            currentNode = string.Empty;
         }
     }
 }

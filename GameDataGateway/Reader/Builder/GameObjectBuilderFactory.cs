@@ -11,9 +11,9 @@ namespace GameDataGateway.Reader.Builder {
         public GameObjectBuilder CreateBuilder(string objectType) {
             switch (objectType) {
                 case "Planet":
-                    return new PlanetBuilder();
+                    return new IncompletePlanetBuilder();
                 case "TradeRoute":
-                    return new TradeRouteBuilder(repository.Planets);
+                    return new IncompleteTradeRouteBuilder(repository.Planets);
                 default:
                     return null;
             }

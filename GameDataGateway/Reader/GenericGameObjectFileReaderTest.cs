@@ -1,10 +1,11 @@
-﻿﻿using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using GameDataGateway.Model;
 using GameDataGateway.Reader.Builder;
 using GameDataGateway.Repository;
 using NUnit.Framework;
+
 namespace GameDataGateway.Reader {
     [TestFixture]
     internal class GenericGameObjectFileReaderTest {
@@ -39,13 +40,40 @@ namespace GameDataGateway.Reader {
         }
 
         [Test]
+        public void whenReadingXmlWithPlanet_shouldCreateIncompletePlanetWithXmlString() {
+            string expected = @"<Tag1>Something</Tag1>
+                                <Tag2>
+                                    <SubTag>
+                                        <SubSubTag>42</SubSubTag>
+                                    </SubTag>
+                                </Tag2>".Replace(" ", "").Replace("\n", "").Replace("\r", "");
+            
+            PrepareData("SimplePlanet");
+
+            var repo = new GameObjectRepositoryStub();
+            var builderFactory = new GameObjectBuilderFactory(repo);
+            var sut = new GenericGameObjectFileReader<Planet>("Planet", builderFactory);
+
+            var result = sut.ReadGameFile(filePath) as List<Planet>;
+
+            Assert.That(result.Count, Is.EqualTo(1));
+
+            var planet = result[0] as IncompleteGameObject;
+
+            string xmlString = planet.GetString().Replace(" " , "").Replace("\n", "").Replace("\r", "");
+
+            Assert.That(xmlString, Is.EqualTo(expected));
+
+        }
+
+        [Test]
         public void whenReadingXmlWithValidTradeRoute_shouldReturnListWithTradeRoute() {
             PrepareData("TradeRoute");
 
             var repo = new GameObjectRepositoryStub();
 
-            var pointA = new Model.Implementation.PlanetImp { Name = "Abregado_Rae" };
-            var pointB = new Model.Implementation.PlanetImp { Name = "Bothawui" };
+            var pointA = new Model.Implementation.PlanetImp {Name = "Abregado_Rae"};
+            var pointB = new Model.Implementation.PlanetImp {Name = "Bothawui"};
 
             repo.AddPlanet(pointB);
             repo.AddPlanet(pointA);

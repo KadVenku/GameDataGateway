@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -34,6 +34,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Model\IncompleteGameObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\GameObjectRepository.cs" />
     <Compile Include="Model\Planet.cs" />
@@ -46,17 +47,19 @@
     <Compile Include="Repository\GameObjectRepositoryImp.cs" />
     <Compile Include="Reader\XmlFolderLoader.cs" />
     <Compile Include="Model\GalacticConquest.cs" />
-    <Compile Include="Reader\PlanetFileReader.cs" />
-    <Compile Include="Reader\PlanetFileReaderTest.cs" />
     <Compile Include="Reader\Builder\PlanetBuilder.cs" />
-    <Compile Include="Reader\TradeRouteFileReader.cs" />
-    <Compile Include="Reader\TradeRouteFileReaderTest.cs" />
     <Compile Include="Reader\Builder\TradeRouteBuilder.cs" />
     <Compile Include="Reader\GenericGameObjectFileReader.cs" />
     <Compile Include="Reader\Builder\GameObjectBuilder.cs" />
     <Compile Include="Reader\Builder\GameObjectBuilderFactory.cs" />
     <Compile Include="Reader\GenericGameObjectFileReaderTest.cs" />
     <Compile Include="Reader\XmlStringFactory.cs" />
+    <Compile Include="Writer\PlanetWriter.cs" />
+    <Compile Include="Reader\Builder\IncompletePlanetBuilder.cs" />
+    <Compile Include="Reader\Builder\IncompleteGameObjectBuilder.cs" />
+    <Compile Include="Reader\Builder\IncompleteTradeRouteBuilder.cs" />
+    <Compile Include="Writer\PlanetWriterTest.cs" />
+    <Compile Include="Writer\PlanetWriterMock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repository\" />
@@ -64,6 +67,7 @@
     <Folder Include="Model\Implementation\" />
     <Folder Include="Reader\" />
     <Folder Include="Reader\Builder\" />
+    <Folder Include="Writer\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
